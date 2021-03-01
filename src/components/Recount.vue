@@ -1,7 +1,7 @@
 <template>
   <div>
 
-            <button type="button" v-on:click="calcular" v-if="this.personas.length > 1" class="btn btn-outline-secondary "> calcular sorteo</button>
+            <button type="button" v-on:change="this.$emit('calcularEntrada', 1);" v-on:click="calcular" v-if="this.personas.length > 1" class="btn btn-outline-secondary "> calcular sorteo</button>
           <br/><br/>
 
             <div class="col-6" v-for="v in this.personas" v-bind:key="v.id">
@@ -41,10 +41,11 @@ export default {
         if(this.resultado === ""){
           this.resultado = this.personas[Math.floor(Math.random()*(this.personas.length))];
           swal(`Felicidades ${this.resultado.value}`, `Eres el ganador de rino-concurso`, "success");
-          return this.$emit('calcularEntrada', 1); 
+          
         }
         else{
           swal(`Felicidades ${this.resultado.value}`, `Eres el ganador de rino-concurso`, "success");
+
         }  
       },
 
