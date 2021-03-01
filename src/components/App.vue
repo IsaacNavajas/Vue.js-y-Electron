@@ -65,8 +65,9 @@ export default {
     resetear() {
       this.resultado = "",
       this.personas = [],
-      this.totalDePersonas = 0,
-      this.disabled = 0
+      this.totalDePersonas = "10",
+      this.disabled = 0,
+      this.id = 0
     },
 
     eliminar: function(e){
