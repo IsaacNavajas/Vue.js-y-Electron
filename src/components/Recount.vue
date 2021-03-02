@@ -1,26 +1,20 @@
 <template>
   <div>
 
-            <button type="button" v-on:change="this.$emit('calcularEntrada', 1);" v-on:click="calcular" v-if="this.personas.length > 1" class="btn btn-outline-secondary "> calcular sorteo</button>
+            <button type="button" v-on:click="calcular" v-if="this.personas.length > 1" class="btn btn-outline-secondary "> calcular sorteo</button>
           <br/><br/>
 
-            <div class="col-6" v-for="v in this.personas" v-bind:key="v.id">
-                <ul>
-                  <li >{{ v.id }} - {{ v.value }} <button type="button" v-on:click="eliminar(v)" class="btn btn-warning botonEliminar" >eliminar</button></li>
-                </ul>
-            </div>
+            <p v-if="this.personas.length == this.totalDePersonas" class="colorRojo"> {{`** NO PUEDES ESCRIBIR MAS DE ${this.totalDePersonas} NOMBRES **`}}</p>
 
-          <br/><br/>
-          <br/><br/>
-          
-          <p v-if="this.personas.length == this.totalDePersonas"> {{`** NO PUEDES ESCRIBIR MAS DE ${this.totalDePersonas} NOMBRES **`}}</p>
-          <br/><br/>
-
+              <div class="col-6" v-for="v in this.personas" v-bind:key="v.id">
+                  <ul>
+                    <li >{{ v.id }} - {{ v.value }} <button type="button" v-on:click="eliminar(v)" class="btn btn-warning botonEliminar" >eliminar</button></li>
+                  </ul>
+              </div>
   </div>
 </template>
 
 <script>
-import swal from 'sweetalert';
 
 export default {
   name: 'Recount',
@@ -31,27 +25,22 @@ export default {
       type: Array,
       default: () => [{}]
     },
-    resultado:String,
   },
 
   methods:{
 
       calcular: function(){
-        
-        if(this.resultado === ""){
-          this.resultado = this.personas[Math.floor(Math.random()*(this.personas.length))];
-          swal(`Felicidades ${this.resultado.value}`, `Eres el ganador de rino-concurso`, "success");
-          
-        }
-        else{
-          swal(`Felicidades ${this.resultado.value}`, `Eres el ganador de rino-concurso`, "success");
 
-        }  
+        this.$emit('calcularEntrada', this.personas);
+
       },
 
       eliminar: function(e){
         
         return (this.$emit('eliminar', `${e.id_length}`))
+        
+      },
+      bloquear: function(){
         
       },
 
@@ -77,6 +66,10 @@ li {
 .botonEliminar{
   margin-left:15px;
   padding: 0px 40px;
+}
+
+.colorRojo{
+  color:red;
 }
 
 

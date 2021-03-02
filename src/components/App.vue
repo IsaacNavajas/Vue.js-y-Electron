@@ -4,7 +4,7 @@
     <div class="background col-5">
         
         <img alt="Vue logo" src="../assets/logo.png" class="logo">
-          <h5>{{resultado ? `enhorabuena ${this.resultado} has ganado el concurso` : this.msg  }}</h5>
+          <h5>{{resultado ? `enhorabuena ${this.resultado.value} &#129395; &#127881; &#127881;` : this.msg  }}</h5>
             <p class="maximoTexto">
               el maximo de concursantes es de; <input type="number" class="inputTotalNumero" v-model="totalDePersonas"/> 
             </p>
@@ -26,7 +26,7 @@
           <button type="button" v-on:click="resetear" class="final btn btn-danger"> resetear concurso</button>
     </div>
     <div class="hello col-7 margen-altura ">
-        <Recount :personas="personas" :totalDePersonas="totalDePersonas" :resultado="resultado" v-on:eliminar="eliminar" v-on:calcularEntrada="bloquearTexto"/>
+        <Recount :personas="personas" :totalDePersonas="totalDePersonas" v-on:eliminar="eliminar" v-on:calcularEntrada="ResultadoBloqueo"/>
     </div>
       </center>
   </div>
@@ -34,6 +34,7 @@
 
 <script>
 import Recount from '@/components/Recount.vue';
+import swal from 'sweetalert';
 
 export default {
   name: 'App',
@@ -45,6 +46,7 @@ export default {
       totalDePersonas:"10",
       personas:[],
       resultado:"",
+      resultadoFijo:false,
       msg:"RinoConcurso",
       disabled:0,
       id:0,
@@ -76,8 +78,17 @@ export default {
  
     },
 
-    bloquearTexto: function(e){
-      return this.disabled = e
+    ResultadoBloqueo: function(e){
+
+        if(e && !this.resultadoFijo){
+          this.resultado = e[Math.floor(Math.random()*(e.length))];
+          swal(`Felicidades ${this.resultado.value}`, `Eres el ganador de rino-concurso`, "success");
+          this.disabled = 1;
+          this.resultadoFijo = true
+        }
+        else{
+          swal(`Felicidades ${this.resultado.value}`, `Eres el ganador de rino-concurso`, "success");
+        }  
     }
 
 }
