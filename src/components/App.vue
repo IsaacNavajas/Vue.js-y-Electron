@@ -13,7 +13,7 @@
           <div class="col-12 capsula">
             <center>
               <div class="input-group mb-3">
-                <input type="text" v-model="entrada" class="form-control col-12" placeholder="Escribe aqui el nombres..." id="texto"  :disabled="disabled === 1">
+                <input type="text" v-model="entrada" class="form-control col-12" placeholder="Escribe aqui el nombre..." id="texto"  :disabled="disabled === 1">
                   <div class="input-group-append col-12">
                     <button type="button" v-on:click="retornarlo" class="btn btn-outline-secondary boton-uno"> agregar un nombre</button>
                   </div>
