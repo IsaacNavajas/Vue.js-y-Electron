@@ -1,4 +1,3 @@
-# pruebaaaaa
 
 ## Project setup
 ```
@@ -20,5 +19,15 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### ----->Electron-builder<-------
+
+
+### paquetes de electron
+vue add electron-builder
+
+### servidor virtual de electron
+npm run electron:serve
+
+### generar aplicacion de electron
+npm run electron:build
+

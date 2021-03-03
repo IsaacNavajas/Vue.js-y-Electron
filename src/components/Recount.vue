@@ -40,9 +40,6 @@ export default {
         return (this.$emit('eliminar', `${e.id_length}`))
         
       },
-      bloquear: function(){
-        
-      },
 
 }
 }
